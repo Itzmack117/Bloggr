@@ -41,7 +41,8 @@
     },
     methods: {
       newBlog() {
-        this.$store.dispatch("setBlogs", this.blog)
+        this.$store.dispatch("addBlog", { ...this.blog })
+        this.newBlog = {}
       }
     },
     components: {
