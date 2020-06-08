@@ -8,12 +8,16 @@
       <div v-if="isCreator"></div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 
   export default {
     name: "profile",
+    mounted() {
+      this.$store.dispatch("getProfile")
+    },
     data() {
       return {
         blog: {
