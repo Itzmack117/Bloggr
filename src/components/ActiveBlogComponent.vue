@@ -1,3 +1,4 @@
+<!-- RETIRED, KEPT JUST IN CASE -->
 <template>
     <div class="container">
         <div class="row mt-3">
@@ -17,7 +18,12 @@
 <script>
     export default {
         mounted() {
-            this.$store.dispatch("getActiveBlog")
+            this.$store.dispatch("getActiveBlog", this.$route.params.id)
+        },
+        computed: {
+            isCreator() {
+                return this.$store.state.profile.email == this.post.creatorEmail
+            },
         }
     }
 </script>

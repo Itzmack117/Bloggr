@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col">
-                <div class="card" @click="activeBlog">
+
+                <div class="card" @click="activeBlog" :key="blog.id">
                     <div class="card-title">
                         <h1>{{blog.title}}</h1>
                         <h4>{{blog.creator.name}}</h4>
@@ -24,6 +25,7 @@
         },
         methods: {
             activeBlog() {
+                this.$store.dispatch('getActiveBlog', this.blog._id)
 
             }
         }

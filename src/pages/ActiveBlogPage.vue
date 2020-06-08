@@ -2,17 +2,16 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col">
-                <router-link :to="{name: 'ActiveBlog', params: {id: blogProp._id}}">
-                    <div class="card">
-                        <div class="card-title">
-                            <h1>{{blog.title}}</h1>
-                            <div>
-                                <p>{{blog.body}}</p>
-                                <h4>{{blog.creator.name}}</h4>
+                <div class="card">
+                    <div class="card-title">
+                        <h1>{{blog.title}}</h1><button v-if="isCreator" @click="deleteBlog">DELELE</button>
+                        <div>
+                            <p>{{blog.body}}</p>
+                            <h4>{{blog.creator.name}}</h4>
 
-                            </div>
                         </div>
                     </div>
+                </div>
                 </router-link>
             </div>
         </div>
@@ -22,9 +21,18 @@
 <script>
     export default {
         name: "ActiveBlog",
-        props: ["blogProp"],
         mounted() {
-            this.$store.dispatch()
+            this.$store.dispatch('setActiveBlog', this.blog._id)
+        },
+        methods: {
+            deleteBlog() {
+                this.$store.dispatch("deleteBlog", this.blog._id)
+            }
+        },
+        computed: {
+            isCreator() {
+                return this.$store.state.profile.email == this.post.creatorEmail
+            },
         }
     }
 </script>

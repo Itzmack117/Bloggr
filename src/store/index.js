@@ -49,9 +49,9 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async getActiveBlog({ commit }, id) {
+    async getActiveBlog({ commit, dispatch }, id) {
       try {
-        let res = await api.get('blogs/' + id)
+        let res = await api.get('blogs/:' + id)
         commit("setActiveBlog", res.data)
         router.push({ name: "ActiveBlog", params: { id: res.data.id } })
       } catch (error) {
@@ -64,6 +64,14 @@ export default new Vuex.Store({
         dispatch("getAllPosts")
 
       } catch (error) { console.error(error) }
-    }
+    },
+    async deleteBlog({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("blogs/" + id)
+        router.push({ name: "Home" })
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 })
