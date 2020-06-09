@@ -5,7 +5,7 @@
     <p>{{ profile.email }}</p>
 
     <div v-for="blog in blogs">
-      <div v-if="isCreator"></div>
+      <div v-if="profile.email == blog.creatorEmail">{{blog.title}}</div>
     </div>
   </div>
   </div>
@@ -36,7 +36,7 @@
         return this.$store.state.profile;
       },
       isCreator() {
-        return this.$store.state.profile.email == this.post.creatorEmail
+        return this.$store.state.profile.email == this.blog.creatorEmail
       },
     }
   };

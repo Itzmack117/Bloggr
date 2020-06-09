@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col">
-
                 <div class="card" @click="activeBlog" :key="blog.id">
                     <div class="card-title">
                         <h1>{{blog.title}}</h1>

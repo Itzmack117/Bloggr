@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     profile: {},
     blogs: [],
-    activeBlog: {}
+    activeBlog: {},
+    comments: []
   },
   mutations: {
     setProfile(state, profile) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     setActiveBlog(state, data) {
       state.activeBlog = data
+    },
+    setComments(state, data) {
+      state.comments = data
     }
   },
   actions: {
@@ -43,7 +47,6 @@ export default new Vuex.Store({
     async getAllBlogs({ commit, dispatch }) {
       try {
         let res = await api.get("blogs")
-        console.log(res.data)
         commit("setBlogs", res.data)
       } catch (error) {
         console.error(error)
@@ -51,9 +54,13 @@ export default new Vuex.Store({
     },
     async getActiveBlog({ commit, dispatch }, id) {
       try {
-        let res = await api.get('blogs/:' + id)
-        commit("setActiveBlog", res.data)
-        router.push({ name: "ActiveBlog", params: { id: res.data.id } })
+        let res = await api.get('blogs/' + id)
+        console.log(res.data, "response");
+        commit("setActiveBlog", res.data.blog)
+        console.log("comments", res.data.comments)
+        commit("setComments", res.data.comments)
+        // FIXME you also got res.data.comments, what do you do with that
+        router.push({ name: "ActiveBlog", params: { id: res.data.blog.id } })
       } catch (error) {
         console.error(error);
       }
@@ -61,7 +68,7 @@ export default new Vuex.Store({
     async addBlog({ commit, dispatch }, blog) {
       try {
         let res = await api.post('blogs', blog)
-        dispatch("getAllPosts")
+        dispatch("getAllBlogs")
 
       } catch (error) { console.error(error) }
     },

@@ -50,16 +50,16 @@ Once you have the appropriate functionality, add a theme the site in whatever wa
 
 - [X] `Home page` displays all published blogs (response from a standard get request)
 - [X] Blogs on the `home page` are listed as title and author
-- [ ] Clicking the link users are taken to a `blog page`
-- [ ] Refreshing while on the `blog page` does not renavigate the user, and the blog still shows its contents
-- [ ] The `blog page` shows all comments for that blog
+- [X] Clicking the link users are taken to a `blog page`
+- [X] Refreshing while on the `blog page` does not renavigate the user, and the blog still shows its contents
+- [X] The `blog page` shows all comments for that blog
 
 #### Functionality
 
 - [X] Users Can Register, Login, and Logout (this should work out of the box, don't break it)
 - [ ] Once logged in Users can Create Edit and Delete Blogs
 - [ ] Once logged in Users can Create Edit and Delete Comments
-- [ ] Users can only modify/delete data they created
+- [X] Users can only modify/delete data they created
 
 
 ### API Routes

@@ -5,15 +5,15 @@
       <div class="col">
         <form class="form-inline d-flex" @submit.prevent="newBlog">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Title" v-model="blogs.title" />
-            <input type="text" class="form-control" placeholder="Body" v-model="blogs.body" />
+            <input type="text" class="form-control" placeholder="Title" v-model="blog.title" />
+            <input type="text" class="form-control" placeholder="Body" v-model="blog.body" />
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
     </div>
     <div class="row">
-      <blog v-for="blog in blogs" :key="blog.id" :blog="blog" />
+      <blog v-if="blog.creator" v-for="blog in blogs" :key="blog.id" :blog="blog" />
     </div>
   </div>
 
